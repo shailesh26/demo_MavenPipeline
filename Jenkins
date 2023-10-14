@@ -60,10 +60,8 @@ stages{
                    echo 'Deploy..'
               }
           }
-	  post {
-        always {
-            deleteDir() /* clean up our workspace */
-        }
+
+ deleteDir();
     }   
           
       }
