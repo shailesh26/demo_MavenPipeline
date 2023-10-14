@@ -5,64 +5,64 @@ pipeline{
     label 'node1label' 
     
 }*/
-stages{
-    
-            stage('Checkout'){
-               
-             
-	    
-               steps{
-		 echo 'cloning..'
-		  
-		   
-                 git 'https://github.com/akshu20791/DevOpsClassCodes.git'
-              }
-          }
-          stage('Compile'){
-             
-              steps{
-                  echo 'compiling..'
-                  bat 'mvn compile'
-	      }
-          }
-          stage('CodeReview'){
-		  
-              steps{
-		    
-		  echo 'codeReview'
-                  bat 'mvn pmd:pmd'
-              }
-          }
-           stage('UnitTest'){
-		  
-              steps{
-	         
-                  bat 'mvn test'
-              }
-               post {
-               success {
-                   junit 'target/surefire-reports/*.xml'
-               }
-           }	
-          }
-          
-          stage('Package'){
-		  
-              steps{
-		  
-                  bat 'mvn package'
-              }
-          }
-           stage('Deploy'){
-		  
-              steps{
-		  
-                   echo 'Deploy..'
-              }
-          }
+        stages{
+            
+                    stage('Checkout'){
+                    
+                    
+                
+                    steps{
+                echo 'cloning..'
+                
+                
+                        git 'https://github.com/akshu20791/DevOpsClassCodes.git'
+                    }
+                }
+                stage('Compile'){
+                    
+                    steps{
+                        echo 'compiling..'
+                        bat 'mvn compile'
+                }
+                }
+                stage('CodeReview'){
+                
+                    steps{
+                    
+                echo 'codeReview'
+                        bat 'mvn pmd:pmd'
+                    }
+                }
+                stage('UnitTest'){
+                
+                    steps{
+                    
+                        bat 'mvn test'
+                    }
+                    post {
+                    success {
+                        junit 'target/surefire-reports/*.xml'
+                    }
+                }	
+                }
+                
+                stage('Package'){
+                
+                    steps{
+                
+                        bat 'mvn package'
+                    }
+                }
+                stage('Deploy'){
+                
+                    steps{
+                
+                        echo 'Deploy..'
+                    }
+                }
 
- deleteDir();
-    }   
-          
-      }
+                   }   
+                
+        }
+
 }
