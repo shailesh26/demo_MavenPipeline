@@ -1,7 +1,16 @@
 pipeline{
 	agent any
 
-def workspace = WORKSPACE
+
+/*agent { 
+    label 'node1label' 
+    
+}*/
+        stages{
+            
+                    stage('Checkout'){
+                    
+                    def workspace = WORKSPACE
     // ${workspace} will now contain an absolute path to job workspace on slave
 
     workspace = env.WORKSPACE
@@ -13,15 +22,6 @@ def workspace = WORKSPACE
     // the current Jenkins instances will support the short syntax, too:
     echo "Current workspace is $WORKSPACE"
 
-/*agent { 
-    label 'node1label' 
-    
-}*/
-        stages{
-            
-                    stage('Checkout'){
-                    
-                    
                 
                     steps{
                 echo 'cloning..'
